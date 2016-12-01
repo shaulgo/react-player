@@ -4,7 +4,7 @@ import { propTypes, defaultProps } from '../props'
 
 const SEEK_ON_PLAY_EXPIRY = 5000
 
-export default class Base extends Component {
+export default class BasePlayer extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   isReady = false

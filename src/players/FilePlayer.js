@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Base from './Base'
+import BasePlayer from './BasePlayer'
 
 const AUDIO_EXTENSIONS = /\.(mp3|wav|m4a)($|\?)/i
 
-export default class FilePlayer extends Base {
+export default class FilePlayer extends BasePlayer {
   static displayName = 'FilePlayer'
   static canPlay (url) {
     return true
@@ -63,6 +63,14 @@ export default class FilePlayer extends Base {
     if (!this.isReady || this.player.buffered.length === 0) return null
     return this.player.buffered.end(0) / this.getDuration()
   }
+
+  stopBuffering () {
+    this.player.pause();
+    const currentTime = this.player.currentTime;
+    this.player.load();
+    this.player.currentTime = currentTime;
+  }
+
   ref = player => {
     this.player = player
   }
