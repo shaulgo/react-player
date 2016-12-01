@@ -57,6 +57,9 @@ export default class App extends Component {
       this.setState(state)
     }
   }
+  onBuffer = buffering => {
+    this.setState({buffering});
+  }
   onClickFullscreen = () => {
     screenfull.request(findDOMNode(this.player))
   }
