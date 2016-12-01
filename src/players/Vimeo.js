@@ -1,7 +1,7 @@
 import React from 'react'
 import { stringify } from 'query-string'
 
-import Base from './Base'
+import BasePlayer from './BasePlayer'
 
 const IFRAME_SRC = 'https://player.vimeo.com/video/'
 const MATCH_URL = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/
@@ -17,7 +17,7 @@ const DEFAULT_IFRAME_PARAMS = {
   title: 0
 }
 
-export default class Vimeo extends Base {
+export default class Vimeo extends BasePlayer {
   static displayName = 'Vimeo'
   static canPlay (url) {
     return MATCH_URL.test(url)
