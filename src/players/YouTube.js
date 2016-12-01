@@ -1,7 +1,7 @@
 import React from 'react'
 import loadScript from 'load-script'
 
-import Base from './Base'
+import BasePlayer from './BasePlayer'
 import { parseStartTime } from '../utils'
 
 const SDK_URL = 'https://www.youtube.com/iframe_api'
@@ -17,7 +17,7 @@ const DEFAULT_PLAYER_VARS = {
   iv_load_policy: 3
 }
 
-export default class YouTube extends Base {
+export default class YouTube extends BasePlayer {
   static displayName = 'YouTube'
   static canPlay (url) {
     return MATCH_URL.test(url)

@@ -18,7 +18,8 @@ export default class App extends Component {
     volume: 0.8,
     played: 0,
     loaded: 0,
-    duration: 0
+    duration: 0,
+    buffering: true
   }
   load = url => {
     this.setState({
@@ -32,6 +33,10 @@ export default class App extends Component {
   }
   stop = () => {
     this.setState({ url: null, playing: false })
+  }
+  stopBuffering = () => {
+    this.setState({ playing: false })
+    this.player.stopBuffering();
   }
   setVolume = e => {
     this.setState({ volume: parseFloat(e.target.value) })
@@ -55,6 +60,9 @@ export default class App extends Component {
   onClickFullscreen = () => {
     screenfull.request(findDOMNode(this.player))
   }
+  onBuffer = buffering => {
+    this.setState({buffering});
+  }
   onConfigSubmit = () => {
     let config
     try {
@@ -76,6 +84,7 @@ export default class App extends Component {
     const {
       url, playing, volume,
       played, loaded, duration,
+      buffering,
       soundcloudConfig,
       vimeoConfig,
       youtubeConfig,
@@ -103,7 +112,7 @@ export default class App extends Component {
             onStart={() => console.log('onStart')}
             onPlay={() => this.setState({ playing: true })}
             onPause={() => this.setState({ playing: false })}
-            onBuffer={() => console.log('onBuffer')}
+            onBuffer={this.onBuffer}
             onEnded={() => this.setState({ playing: false })}
             onError={e => console.log('onError', e)}
             onProgress={this.onProgress}
@@ -114,6 +123,7 @@ export default class App extends Component {
             <tr>
               <th>Controls</th>
               <td>
+                <button onClick={this.stopBuffering}>Stop Buffering</button>
                 <button onClick={this.stop}>Stop</button>
                 <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
                 <button onClick={this.onClickFullscreen}>Fullscreen</button>
@@ -242,6 +252,10 @@ export default class App extends Component {
             <tr>
               <th>remaining</th>
               <td><Duration seconds={duration * (1 - played)} /></td>
+            </tr>
+            <tr>
+              <th>buffering</th>
+              <td>{buffering ? 'true' : 'false'}</td>
             </tr>
           </tbody></table>
         </section>

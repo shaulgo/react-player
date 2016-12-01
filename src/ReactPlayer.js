@@ -13,7 +13,9 @@ export default class ReactPlayer extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   componentDidMount () {
-    this.progress()
+    if (this.props.onProgress) {
+      this.progress()
+    }
   }
   componentWillUnmount () {
     clearTimeout(this.progressTimeout)
@@ -25,12 +27,18 @@ export default class ReactPlayer extends Component {
       this.props.volume !== nextProps.volume ||
       this.props.height !== nextProps.height ||
       this.props.width !== nextProps.width ||
-      this.props.hidden !== nextProps.hidden
+      this.props.hidden !== nextProps.hidden ||
+      this.props.fileConfig !== nextProps.fileConfig
     )
   }
   seekTo = fraction => {
     if (this.player) {
       this.player.seekTo(fraction)
+    }
+  }
+  stopBuffering = () => {
+    if (this.player && this.player.stopBuffering) {
+      this.player.stopBuffering();
     }
   }
   progress = () => {
@@ -41,8 +49,15 @@ export default class ReactPlayer extends Component {
       if (loaded !== this.prevLoaded) {
         progress.loaded = loaded
       }
-      if (played !== this.prevPlayed && this.props.playing) {
-        progress.played = played
+      if (this.props.playing) {
+        if (played !== this.prevPlayed) {
+          progress.played = played
+        }
+        const buffering = !progress.played;
+        if (buffering !== this.prevBuffering) {
+          this.props.onBuffer(buffering);
+          this.prevBuffering = buffering;
+        }
       }
       if (progress.loaded || progress.played) {
         this.props.onProgress(progress)
