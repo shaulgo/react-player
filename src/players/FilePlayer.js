@@ -65,10 +65,10 @@ export default class FilePlayer extends BasePlayer {
   }
 
   stopBuffering () {
-    this.player.pause();
-    const currentTime = this.player.currentTime;
-    this.player.load();
-    this.player.currentTime = currentTime;
+    this.player.pause()
+    const currentTime = this.player.currentTime
+    this.player.load()
+    this.player.currentTime = currentTime
   }
 
   ref = player => {

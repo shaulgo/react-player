@@ -36,7 +36,7 @@ export const propTypes = {
   onBuffer: func,
   onEnded: func,
   onError: func,
-  onDuration: func,
+  onDuration: func
 }
 
 export const defaultProps = {
@@ -70,5 +70,5 @@ export const defaultProps = {
   onBuffer: function () {},
   onEnded: function () {},
   onError: function () {},
-  onDuration: function () {},
+  onDuration: function () {}
 }

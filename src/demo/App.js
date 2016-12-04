@@ -36,7 +36,7 @@ export default class App extends Component {
   }
   stopBuffering = () => {
     this.setState({ playing: false })
-    this.player.stopBuffering();
+    this.player.stopBuffering()
   }
   setVolume = e => {
     this.setState({ volume: parseFloat(e.target.value) })
@@ -58,13 +58,13 @@ export default class App extends Component {
     }
   }
   onBuffer = buffering => {
-    this.setState({buffering});
+    this.setState({buffering})
   }
   onClickFullscreen = () => {
     screenfull.request(findDOMNode(this.player))
   }
   onBuffer = buffering => {
-    this.setState({buffering});
+    this.setState({buffering})
   }
   onConfigSubmit = () => {
     let config

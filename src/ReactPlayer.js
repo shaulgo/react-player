@@ -38,7 +38,7 @@ export default class ReactPlayer extends Component {
   }
   stopBuffering = () => {
     if (this.player && this.player.stopBuffering) {
-      this.player.stopBuffering();
+      this.player.stopBuffering()
     }
   }
   progress = () => {
@@ -53,10 +53,10 @@ export default class ReactPlayer extends Component {
         if (played !== this.prevPlayed) {
           progress.played = played
         }
-        const buffering = !progress.played;
+        const buffering = !progress.played
         if (buffering !== this.prevBuffering) {
-          this.props.onBuffer(buffering);
-          this.prevBuffering = buffering;
+          this.props.onBuffer(buffering)
+          this.prevBuffering = buffering
         }
       }
       if (progress.loaded || progress.played) {
