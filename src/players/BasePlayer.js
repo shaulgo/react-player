@@ -40,9 +40,9 @@ export default class BasePlayer extends Component {
       this.setVolume(nextProps.volume)
     }
   }
-  shouldComponentUpdate (nextProps) {
-    return this.props.url !== nextProps.url
-  }
+  // shouldComponentUpdate (nextProps) {
+  //   return this.props.url !== nextProps.url
+  // }
   seekTo (fraction) {
     // When seeking before player is ready, store value and seek later
     if (!this.isReady && fraction !== 0) {
