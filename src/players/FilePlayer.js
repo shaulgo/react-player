@@ -70,12 +70,12 @@ export default class FilePlayer extends BasePlayer {
 
     const setTime = () => {
       this.player.currentTime = time
-      this.player.removeEventListener('loadedmetadata', setTime);
-    };
-    this.player.addEventListener('loadedmetadata', setTime);
+      this.player.removeEventListener('loadedmetadata', setTime)
+    }
+    this.player.addEventListener('loadedmetadata', setTime)
     this.player.load()
     try {
-      setTime(); // if it can't set player.currentTime, it will run in the event listener.
+      setTime() // if it can't set player.currentTime, it will run in the event listener.
     } catch (e) {
     }
   }
