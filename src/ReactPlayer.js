@@ -113,6 +113,13 @@ export default class ReactPlayer extends Component {
       />
     )
   }
+
+  onWrapperClick() {
+    if (this.props.onWrapperClick) {
+      this.props.onWrapperClick();
+    }
+  }
+
   render () {
     const { style, width, height, className, hidden } = this.props
     const players = this.renderPlayers()
@@ -120,7 +127,7 @@ export default class ReactPlayer extends Component {
     const thumbnail = (<img src={this.props.poster} width={`${this.props.width}px`} height={`${this.props.height}px`} className='gallery--placeholder-item' />)
 
     return (
-      <div style={{ ...style, width, height }} className={className} hidden={hidden}>
+      <div style={{ ...style, width, height }} className={className} hidden={hidden} onClick={this.onWrapperClick.bind(this)}>
         {
           (isExternalPlayer && !this.props.playedOnce) ? thumbnail : players
         }
