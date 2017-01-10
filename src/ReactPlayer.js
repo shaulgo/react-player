@@ -114,9 +114,9 @@ export default class ReactPlayer extends Component {
     )
   }
 
-  onWrapperClick() {
+  onWrapperClick () {
     if (this.props.onWrapperClick) {
-      this.props.onWrapperClick();
+      this.props.onWrapperClick()
     }
   }
 
