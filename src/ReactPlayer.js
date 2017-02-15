@@ -123,13 +123,13 @@ export default class ReactPlayer extends Component {
   render () {
     const { style, width, height, className, hidden } = this.props
     const players = this.renderPlayers()
-    const isExternalPlayer = YouTube.canPlay(this.props.url) || Vimeo.canPlay(this.props.url)
+    // const isExternalPlayer = YouTube.canPlay(this.props.url) || Vimeo.canPlay(this.props.url)
     const thumbnail = (<img src={this.props.poster} width={`${this.props.width}px`} height={`${this.props.height}px`} className='gallery--placeholder-item' />)
 
     return (
       <div style={{ ...style, width, height }} className={className} hidden={hidden} onClick={this.onWrapperClick.bind(this)}>
         {
-          (isExternalPlayer && !this.props.playedOnce) ? thumbnail : players
+          this.props.mockPlayer ? thumbnail : players
         }
       </div>
     )

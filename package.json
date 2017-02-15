@@ -1,6 +1,6 @@
 {
   "name": "react-player-fork",
-  "version": "0.12.104",
+  "version": "0.12.105",
   "description": "A react component for playing a variety of URLs, including file paths, YouTube, SoundCloud, Streamable, Vidme and Vimeo",
   "main": "lib/ReactPlayer.js",
   "scripts": {
