@@ -13,13 +13,14 @@ import Duration from './Duration'
 
 export default class App extends Component {
   state = {
+    buffering: true,
     url: null,
     playing: true,
     volume: 0.8,
     played: 0,
     loaded: 0,
     duration: 0,
-    buffering: true
+    playbackRate: 1.0
   }
   load = url => {
     this.setState({
@@ -40,6 +41,10 @@ export default class App extends Component {
   }
   setVolume = e => {
     this.setState({ volume: parseFloat(e.target.value) })
+  }
+  setPlaybackRate = e => {
+    console.log(parseFloat(e.target.value))
+    this.setState({ playbackRate: parseFloat(e.target.value) })
   }
   onSeekMouseDown = e => {
     this.setState({ seeking: true })
@@ -63,9 +68,6 @@ export default class App extends Component {
   onClickFullscreen = () => {
     screenfull.request(findDOMNode(this.player))
   }
-  onBuffer = buffering => {
-    this.setState({buffering})
-  }
   onConfigSubmit = () => {
     let config
     try {
@@ -85,9 +87,10 @@ export default class App extends Component {
   }
   render () {
     const {
+      buffering,
       url, playing, volume,
       played, loaded, duration,
-      buffering,
+      playbackRate,
       soundcloudConfig,
       vimeoConfig,
       youtubeConfig,
@@ -106,6 +109,7 @@ export default class App extends Component {
             height={270}
             url={url}
             playing={playing}
+            playbackRate={playbackRate}
             volume={volume}
             soundcloudConfig={soundcloudConfig}
             vimeoConfig={vimeoConfig}
@@ -130,6 +134,9 @@ export default class App extends Component {
                 <button onClick={this.stop}>Stop</button>
                 <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
                 <button onClick={this.onClickFullscreen}>Fullscreen</button>
+                <button onClick={this.setPlaybackRate} value={1}>1</button>
+                <button onClick={this.setPlaybackRate} value={1.5}>1.5</button>
+                <button onClick={this.setPlaybackRate} value={2}>2</button>
               </td>
             </tr>
             <tr>
