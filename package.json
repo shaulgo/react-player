@@ -1,5 +1,5 @@
 {
-  "name": "react-player-fork",
+  "name": "wix-react-player",
   "version": "0.12.106",
   "description": "A react component for playing a variety of URLs, including file paths, YouTube, SoundCloud, Streamable, Vidme and Vimeo",
   "main": "lib/ReactPlayer.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shaulgo/react-player.git"
+    "url": "https://github.com/wix-private/react-player.git"
   },
   "keywords": [
     "react",
